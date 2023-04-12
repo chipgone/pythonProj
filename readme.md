@@ -21,4 +21,4 @@ num_points = 1000
 Here is an example of the output of the program with the f(x) = x**2 function:
 ![If you see this, the image didn't load. Shit. Uhh, basicaly it's an image of the program in action. Yeah.](https://i.imgur.com/LDlGEDY.png)
 
-This program was created by [myself](https://github.com/chipgone) as a personal project.
+This program was created by [myself](https://github.com/necogay) as a personal project.
