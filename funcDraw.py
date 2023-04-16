@@ -1,49 +1,52 @@
-# Imports (albeit math is not used, it could be useful for the user for more complex functions)
+import matplotlib.pyplot as plt
+import numpy as np
+import re
 import math
-import tkinter as tk
 
-# Function to plot (could make it editable by user later using input)
-def f(x):
-    return x**2 # A parabola as an example
+# Define a function to check if a string is a valid mathematical function
+def is_valid_function(f):
+    try:
+        x = np.arange(-10, 10, 0.1)
+        eval(f)
+        return True
+    except:
+        return False
 
-# Range of x-values to plot
-x_min = -10
-x_max = 10
-num_points = 1000
+# Prompt the user to enter a function
+while True:
+    f = input("Enter a mathematical function: ")
 
-# Making a list of x-values
-x_values = []
-for i in range(num_points):
-    x_values.append(x_min + i * (x_max - x_min) / (num_points - 1))
+    # Check if the function is valid
+    if is_valid_function(f):
+        break
+    else:
+        print("Invalid function. Please try again.")
 
-# Making a list of y-values
-y_values = []
-for x in x_values:
-    y_values.append(f(x))
+# Replace "^" with "**" in the function string
+f = re.sub(r'\^', r'**', f)
 
-# Min and max y-values (for scaling)
-y_min = min(y_values)
-y_max = max(y_values)
+# Define the function to be plotted
+def plot_func(x):
+    # Allow the use of trigonometric and logarithmic functions
+    sin = math.sin
+    cos = math.cos
+    tan = math.tan
+    log = math.log10
+    return eval(f)
 
-# Defining the size and position of the window/GUI and creating it
-window_width = 800
-window_height = 600
-window_x = 100
-window_y = 100
-root = tk.Tk()
-root.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
-root.title("Function Plotting")
+# Generate x-values for the function
+x = np.linspace(-10, 10, 1000)
 
-# Create the canvas for the plot
-canvas = tk.Canvas(root, width=window_width, height=window_height, bg="white")
-canvas.pack(fill="both", expand=True)
+# Generate y-values for the function
+y = plot_func(x)
 
-# Plot the function
-for i in range(num_points - 1):
-    x1 = (x_values[i] - x_min) * window_width / (x_max - x_min)
-    x2 = (x_values[i+1] - x_min) * window_width / (x_max - x_min)
-    y1 = (y_values[i] - y_min) * window_height / (y_max - y_min)
-    y2 = (y_values[i+1] - y_min) * window_height / (y_max - y_min)
-    canvas.create_line(x1, window_height - y1, x2, window_height - y2, width=2)
+# Create a plot with the x- and y-values
+plt.plot(x, y)
 
-root.mainloop()
+# Set the plot title and axis labels
+plt.title('Function Plotter')
+plt.xlabel('x')
+plt.ylabel('y')
+
+# Show the plot
+plt.show()
