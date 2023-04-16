@@ -4,7 +4,7 @@ This Python program takes a mathematical function and draws it in a window witho
 
 ## Usage
 
-To use the program, simply run the `funcDraw.py` file and (when prompted) define your own function to be plotted inside the `f(x)` function. You can also customize the range of x-values to plot by adjusting the `x = np.linspace(-10, 10, 1000)` variable.
+To use the program, first, run `pip pip install -r requirements.txt`, and then simply run the `funcDraw.py` file and (when prompted) define your own function to be plotted inside the `f(x)` function. You can also customize the range of x-values to plot by adjusting the `x = np.linspace(-10, 10, 1000)` variable.
 
 
 ## Example
